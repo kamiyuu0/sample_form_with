@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do 
+    resource :notification_setting, only: %i[new create edit update]
+  end
 
   root "posts#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

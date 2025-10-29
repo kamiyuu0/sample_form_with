@@ -7,4 +7,21 @@
     <strong class="block font-medium mb-1">Description:</strong>
     <%= post.description %>
   </div>
+  
+  <% if post.notification_setting.present? %>
+    <div class="bg-blue-50 p-4 rounded-md">
+      <strong class="block font-medium mb-2">通知設定:</strong>
+      <div class="space-y-1 text-sm">
+        <% if post.notification_setting.notification_time %>
+          <div>通知時刻: <%= post.notification_setting.notification_time.strftime("%H:%M") %></div>
+        <% end %>
+        <div>リアクション通知: <%= post.notification_setting.notify_on_reaction? ? "有効" : "無効" %></div>
+        <div>コメント通知: <%= post.notification_setting.notify_on_comment? ? "有効" : "無効" %></div>
+      </div>
+    </div>
+  <% else %>
+    <div class="bg-gray-50 p-4 rounded-md">
+      <span class="text-gray-600 text-sm">通知設定が未設定です</span>
+    </div>
+  <% end %>
 </div>
